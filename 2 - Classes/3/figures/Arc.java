@@ -10,35 +10,38 @@ public class Arc{
     private int x, y;
     private int w, h;
 	private int arci, arcf;
-	private int bgr, bgg, bgb;
+	private Color bg;
 
-    public Arc (int x, int y, int w, int h, int arci, int arcf, int bgr, int bgg, int bgb) {
+    public Arc (int x, int y, int w, int h, int arci, int arcf, Color bg) {
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
 		this.arci = arci;
 		this.arcf = arcf;
-		this.bgr = bgr;
-		this.bgg = bgg;
-		this.bgb = bgb;
+		this.bg = bg;
+    }
+	
+	public void print () {
+        System.out.format("Arco de tamanho (%d,%d) na posicao (%d,%d).\n",
+            this.w, this.h, this.x, this.y);
     }
 
     public void paint_o (Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
-		g.setColor(new Color(bgr,bgg,bgb));
+		g.setColor(bg);
         g2d.draw(new Arc2D.Double(x, y, w,h, arci, arcf, Arc2D.OPEN));
     }
 	
 	public void paint_p (Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
-		g.setColor(new Color(bgr,bgg,bgb));
+		g.setColor(bg);
         g2d.fill(new Arc2D.Double(x, y, w,h, arci, arcf, Arc2D.PIE));
     }
 	
 	public void paint_c (Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
-		g.setColor(new Color(bgr,bgg,bgb));
+		g.setColor(bg);
         g2d.fill(new Arc2D.Double(x, y, w,h, arci, arcf, Arc2D.CHORD));
     }
 }

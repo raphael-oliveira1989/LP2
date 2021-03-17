@@ -1,26 +1,19 @@
 package figures;
 
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Ellipse2D.Double;
 
 public class Ellipse {
     private int x, y;
     private int w, h;
-	private int bdr, bdg, bdb;
-	private int bgr, bgg, bgb;
+	private Color bg, bd;
 
-    public Ellipse (int x, int y, int w, int h, int bdr, int bdg, int bdb, int bgr, int bgg, int bgb) {
+    public Ellipse (int x, int y, int w, int h, Color bd, Color bg) {
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
-		this.bdr = bdr;
-		this.bdg = bdg;
-		this.bdb = bdb;
-		this.bgr = bgr;
-		this.bgg = bgg;
-		this.bgb = bgb;
+		this.bd = bd;
+		this.bg = bg;
     }
 
     public void print () {
@@ -30,12 +23,12 @@ public class Ellipse {
 
     public void paint (Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-		g2d.setColor(new Color(bdr,bdg,bdb));
-        g2d.draw(new Ellipse2D.Double(this.x,this.y, this.w,this.h));
-		//this.x+=1;this.y+=1;
-		//this.w-=1;this.h-=1;
-		g.setColor(new Color(bgr,bgg,bgb));
-		g2d.fill(new Ellipse2D.Double(this.x,this.y, this.w,this.h));
+		g2d.setColor(bd);
+        g2d.drawOval(this.x,this.y, this.w,this.h);
+		this.x+=1;this.y+=1;
+		this.w-=1;this.h-=1;
+		g.setColor(bg);
+		g2d.fillOval(this.x,this.y, this.w,this.h);
     }
 }
 /*
