@@ -48,8 +48,10 @@ class RectEllipseFrame extends JFrame {
 }
 
 class Rect {
-    int x, y,i,j;
-    int w, h,a,l;
+    int x, y;
+	//int i,j;
+    int w, h;
+	//int a,l;
 	int bdr, bdg, bdb;
 	int bgr, bgg, bgb;
 
@@ -74,18 +76,22 @@ class Rect {
     void paint (Graphics g) {
 		g.setColor(new Color(bdr,bdg,bdb));
         g.drawRect(this.x,this.y, this.w,this.h);
+		/*
 		this.i = x+1;
 		this.j = y+1;
 		this.l = w-1;
 		this.a = h-1;
+		*/
 		g.setColor(new Color(bgr,bgg,bgb));
-		g.fillRect(this.i,this.j, this.l,this.a);
+		g.fillRect(this.x+1,this.y+1, this.w-1,this.h-1);
     }
 }
 
 class Ellipse {
     int x, y;
+	//int i,j;
     int w, h;
+	//int a,l;
 	int bdr, bdg, bdb;
 	int bgr, bgg, bgb;
 
@@ -111,8 +117,13 @@ class Ellipse {
         Graphics2D g2d = (Graphics2D) g;
 		g2d.setColor(new Color(bdr,bdg,bdb));
         g2d.draw(new Ellipse2D.Double(this.x,this.y, this.w,this.h));
-		x=x+1;y=y+1;w=w-1;h=h-1;
+		/*
+		this.i = x+1;
+		this.j = y+1;
+		this.l = w-1;
+		this.a = h-1;
+		*/
 		g.setColor(new Color(bgr,bgg,bgb));
-		g2d.fill(new Ellipse2D.Double(this.x,this.y, this.w,this.h));
+		g2d.fill(new Ellipse2D.Double(this.x+1,this.y+1, this.w-1,this.h-1));
     }
 }
