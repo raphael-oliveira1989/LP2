@@ -48,8 +48,8 @@ class RectEllipseFrame extends JFrame {
 }
 
 class Rect {
-    int x, y;
-    int w, h;
+    int x, y,i,j;
+    int w, h,a,l;
 	int bdr, bdg, bdb;
 	int bgr, bgg, bgb;
 
@@ -74,9 +74,12 @@ class Rect {
     void paint (Graphics g) {
 		g.setColor(new Color(bdr,bdg,bdb));
         g.drawRect(this.x,this.y, this.w,this.h);
-		x=x+1;y=y+1;w=w-1;h=h-1;
+		this.i = x+1;
+		this.j = y+1;
+		this.l = w-1;
+		this.a = h-1;
 		g.setColor(new Color(bgr,bgg,bgb));
-		g.fillRect(this.x,this.y, this.w,this.h);
+		g.fillRect(this.i,this.j, this.l,this.a);
     }
 }
 
