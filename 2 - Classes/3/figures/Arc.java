@@ -11,8 +11,9 @@ public class Arc{
     private int w, h;
 	private int arci, arcf;
 	private Color bg;
+	private int choice;
 
-    public Arc (int x, int y, int w, int h, int arci, int arcf, Color bg) {
+    public Arc (int x, int y, int w, int h, int arci, int arcf, Color bg, int choice) {
         this.x = x;
         this.y = y;
         this.w = w;
@@ -20,6 +21,7 @@ public class Arc{
 		this.arci = arci;
 		this.arcf = arcf;
 		this.bg = bg;
+		this.choice = choice;
     }
 	
 	public void print () {
@@ -27,21 +29,15 @@ public class Arc{
             this.w, this.h, this.x, this.y);
     }
 
-    public void paint_o (Graphics g) {
+    public void paint(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		g.setColor(bg);
-        g2d.draw(new Arc2D.Double(x, y, w,h, arci, arcf, Arc2D.OPEN));
-    }
-	
-	public void paint_p (Graphics g) {
-		Graphics2D g2d = (Graphics2D) g;
-		g.setColor(bg);
-        g2d.fill(new Arc2D.Double(x, y, w,h, arci, arcf, Arc2D.PIE));
-    }
-	
-	public void paint_c (Graphics g) {
-		Graphics2D g2d = (Graphics2D) g;
-		g.setColor(bg);
-        g2d.fill(new Arc2D.Double(x, y, w,h, arci, arcf, Arc2D.CHORD));
+		if(this.choice==1){
+			g2d.draw(new Arc2D.Double(x, y, w,h, arci, arcf, Arc2D.OPEN));
+		}else if(this.choice==2){
+			g2d.fill(new Arc2D.Double(x, y, w,h, arci, arcf, Arc2D.PIE));
+		}else if(this.choice==3){
+			g2d.fill(new Arc2D.Double(x, y, w,h, arci, arcf, Arc2D.CHORD));
+		}
     }
 }

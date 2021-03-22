@@ -3,15 +3,19 @@ package figures;
 import java.awt.*;
 
 public class Ellipse {
-    private int x, y;
-    private int w, h;
+    private int x, y,i,j;
+    private int w, h,a,l;
 	private Color bg, bd;
 
     public Ellipse (int x, int y, int w, int h, Color bd, Color bg) {
         this.x = x;
         this.y = y;
+		this.i = x+1;
+		this.j = y+1;
         this.w = w;
         this.h = h;
+		this.l = w-1;
+		this.a = h-1;
 		this.bd = bd;
 		this.bg = bg;
     }
@@ -25,10 +29,8 @@ public class Ellipse {
         Graphics2D g2d = (Graphics2D) g;
 		g2d.setColor(bd);
         g2d.drawOval(this.x,this.y, this.w,this.h);
-		this.x+=1;this.y+=1;
-		this.w-=1;this.h-=1;
-		g.setColor(bg);
-		g2d.fillOval(this.x,this.y, this.w,this.h);
+		g2d.setColor(bg);
+		g2d.fillOval(this.i,this.j, this.l,this.a);
     }
 }
 /*
