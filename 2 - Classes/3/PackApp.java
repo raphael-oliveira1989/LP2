@@ -31,12 +31,12 @@ class PackFrame extends JFrame {
         this.r1 = new Rect(50,50, 100,30,Color.red,Color.gray);
 		//Ellipse (int x, int y, int w, int h, Color bd, Color bg)
         this.e1 = new Ellipse(50,150, 100,30,Color.green,Color.magenta);
-		//Arc (int x, int y, int w, int h, int arci, int arcf, Color bg)
-		this.a1 = new Arc(200,100,50,50,0,270,Color.blue);
-		this.a2 = new Arc(200,200,80,80,30,300,Color.yellow);
-		this.a3 = new Arc(50,220,100,100,90,135,Color.cyan);
+		//Arc (int x, int y, int w, int h, int arci, int arcf, Color bg,int choice)
+		this.a1 = new Arc(200,100,50,50,0,270,Color.blue,1);
+		this.a2 = new Arc(200,200,80,80,30,300,Color.yellow,2);
+		this.a3 = new Arc(50,220,100,100,90,135,Color.cyan,3);
 		this.e2 = new Ellipse(230,215, 15,15,Color.yellow,Color.black);
-		//Triang (int x1,int x2,int x3,int y1,int y2,int y3, Color bd, Color bg)
+		//Triang (int x1,int x2,int x3,int y1,int y2,int y3,Color bg)
 		this.t1 = new Triang(100,130,200,250,200,300,Color.orange);
     }
 
@@ -44,9 +44,9 @@ class PackFrame extends JFrame {
         super.paint(g);
         this.r1.paint(g);
         this.e1.paint(g);
-		this.a1.paint_o(g);
-		this.a2.paint_p(g);
-		this.a3.paint_c(g);
+		this.a1.paint(g);
+		this.a2.paint(g);
+		this.a3.paint(g);
 		this.e2.paint(g);
 		this.t1.paint(g);
 	}
