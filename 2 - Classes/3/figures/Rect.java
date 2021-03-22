@@ -10,12 +10,8 @@ public class Rect {
     public Rect (int x, int y, int w, int h, Color bd, Color bg) {
         this.x = x;
         this.y = y;
-		this.i = x+1;
-		this.j = y+1;
         this.w = w;
         this.h = h;
-		this.l = w-1;
-		this.a = h-1;
 		this.bd = bd;
 		this.bg = bg;
     }
@@ -29,6 +25,10 @@ public class Rect {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setColor(bd);
         g2d.drawRect(this.x,this.y, this.w,this.h);
+		this.i = x+1;
+		this.j = y+1;
+		this.l = w-1;
+		this.a = h-1;
 		g2d.setColor(bg);
 		g2d.fillRect(this.i,this.j, this.l,this.a);
     }
