@@ -3,8 +3,8 @@ package figures;
 import java.awt.*;
 
 public class Rect {
-    private int x, y,i,j;
-    private int w, h,a,l;
+    private int x, y;
+    private int w, h;
 	private Color bg, bd;
 
     public Rect (int x, int y, int w, int h, Color bd, Color bg) {
@@ -25,12 +25,14 @@ public class Rect {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setColor(bd);
         g2d.drawRect(this.x,this.y, this.w,this.h);
+		/*
 		this.i = x+1;
 		this.j = y+1;
 		this.l = w-1;
 		this.a = h-1;
+		*/
 		g2d.setColor(bg);
-		g2d.fillRect(this.i,this.j, this.l,this.a);
+		g2d.fillRect(this.x+1,this.y+1, this.w-1,this.h-1);
     }
 }
 /*
