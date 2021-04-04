@@ -70,6 +70,19 @@ class ListFrame extends JFrame {
 						*/
                         figs.add(new Ellipse(x,y, w,h,new Color(bgr,bgg,bgb),new Color(bdr,bdg,bdb)));
                         repaint();  // outer.repaint()
+                    }else if (evt.getKeyChar() == 'a') {
+						int arci = rand.nextInt(180);
+						int arcf = rand.nextInt(360);
+						int choice = rand.nextInt(3);
+                        figs.add(new Arc(x,y,w,h,arci,arcf,new Color(bgr,bgg,bgb),choice));
+                        repaint();  // outer.repaint()
+                    }else if (evt.getKeyChar() == 't') {
+						int x1 = rand.nextInt(300);
+						int x2 = rand.nextInt(300);
+                        int y1 = rand.nextInt(300);
+                        int y2 = rand.nextInt(300);
+                        figs.add(new Triang(x,x1,x2,y,y1,y2,new Color(bgr,bgg,bgb)));
+                        repaint();  // outer.repaint()
                     }
                 }
             }
