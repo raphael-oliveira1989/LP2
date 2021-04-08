@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.Point;
 import java.awt.event.*;
 import javax.swing.*;
 import java.util.ArrayList;
@@ -6,17 +7,33 @@ import java.util.Random;
 
 import figures.*;
 
+
 class App {
     public static void main (String[] args) {
         ListFrame frame = new ListFrame();
         frame.setVisible(true);
+		//new Mover().start();
     }
 }
-
+/*
+class Mover extends Thread{
+	public void run(){
+		while(true){
+			if(mousepressed){
+				try{sleep(10);}catch(Exception erro){}
+				Point ponto = getMousePosition();
+				frame.setBounds(ponto.x,ponto.y,51,51);
+			}
+		}
+	}
+}
+*/
 class ListFrame extends JFrame {
     ArrayList<Figure> figs = new ArrayList<Figure>();
-	Figure focus = null;
+	boolean mousepressed = false;
     Random rand = new Random();
+	Figure focus = null;
+
 
     ListFrame () {
 		//janela
@@ -30,10 +47,19 @@ class ListFrame extends JFrame {
 		
 		//mouse
 		this.addMouseListener(new MouseAdapter(){
+			/*
+			public void mousePressed(MouseEvent evt){
+				mousepressed = true;
+			}
+			public void mouseReleased(MouseEvent evt){
+				mousepressed = false;
+			}
+			*/
 			public void mouseClicked(MouseEvent evt){
 				focus = null;
 				for(Figure fig: figs){
 					//System.out.format("Figura na coordenada : ["+fig.x+","+fig.y+"]");
+					//seleciona a figura com o mouse
 					if(evt.getX() == fig.x &&  evt.getY() == fig.y){
 						focus = fig;
 						repaint();
@@ -45,6 +71,7 @@ class ListFrame extends JFrame {
 		this.addMouseMotionListener(new MouseMotionAdapter(){
 			public void mouseDragged(MouseEvent evt){
 				//System.out.format("Mouse arrastado nas coordenadas : ["+evt.getX()+","+evt.getY()+"]");
+				//arrasta figura com o mouse
 				for(Figure fig: figs){
 					if(focus == fig){
 						fig.drag(fig.x+evt.getX(),fig.y+evt.getY());
@@ -84,7 +111,19 @@ class ListFrame extends JFrame {
 						int size = rand.nextInt(50);
                         figs.add(new Text("hello",x,y,"Arial",size,new Color(bgr,bgg,bgb)));
                         repaint();  // outer.repaint()
-                    }
+                    }else if(evt.getKeyCode() == 40){//baixo
+						//move figura para baixo
+					}else if(evt.getKeyCode() == 38){//cima
+						//move figura para cima
+					}else if(evt.getKeyCode() == 37){//esquerda
+						//move figura para esquerda
+					}else if(evt.getKeyCode() == 39){//direita
+						//move figura para direita
+					}else if(evt.getKeyCode() == 127){//delete
+						//deleta figura
+					}else if(evt.getKeyCode() == 16){//shift
+						//troca figura
+					}
                 }
             }
         );
