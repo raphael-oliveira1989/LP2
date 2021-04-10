@@ -17,9 +17,5 @@ public abstract class Figure {
         this.y += dy;
     }
 	
-	public float area(){
-		return this.x*this.y;
-	}
-
     public abstract void paint (Graphics g);
 }
