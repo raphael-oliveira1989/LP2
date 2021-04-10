@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.awt.Point;
 import java.awt.event.*;
 import javax.swing.*;
 import java.util.ArrayList;
@@ -57,20 +56,21 @@ class ListFrame extends JFrame {
 			*/
 			public void mouseClicked(MouseEvent evt){
 				focus = null;
+				System.out.format("Mouse clicado na coordenada : ["+evt.getX()+","+evt.getY()+"]");
 				for(Figure fig: figs){
-					//System.out.format("Figura na coordenada : ["+fig.x+","+fig.y+"]");
-					//seleciona a figura com o mouse
-					if(evt.getX() == fig.x &&  evt.getY() == fig.y){
+					System.out.format("Figura na coordenada : ["+fig.x+","+fig.y+"]");
+					/*//seleciona a figura com o mouse
+					if(evt.getX() vs fig.x &&  evt.getY() vs fig.y){
 						focus = fig;
 						repaint();
 					}
+					*/
 				}
-				 //System.out.format("Mouse clicado na coordenada : ["+evt.getX()+","+evt.getY()+"]");
 			}
 		});
+		/*
 		this.addMouseMotionListener(new MouseMotionAdapter(){
 			public void mouseDragged(MouseEvent evt){
-				//System.out.format("Mouse arrastado nas coordenadas : ["+evt.getX()+","+evt.getY()+"]");
 				//arrasta figura com o mouse
 				for(Figure fig: figs){
 					if(focus == fig){
@@ -80,12 +80,13 @@ class ListFrame extends JFrame {
 				}
 			}
 		});
+		*/
 		
 		//teclado
         this.addKeyListener (new KeyAdapter() {
                 public void keyPressed (KeyEvent evt) {
-						int x = 100;
-                        int y = 100;
+						int x = rand.nextInt(300);
+                        int y = rand.nextInt(300);
                         int w = 50;
                         int h = 50;
 						int bgr = rand.nextInt(255);
@@ -112,17 +113,19 @@ class ListFrame extends JFrame {
                         figs.add(new Text("hello",x,y,"Arial",size,new Color(bgr,bgg,bgb)));
                         repaint();  // outer.repaint()
                     }else if(evt.getKeyCode() == 40){//baixo
-						//move figura para baixo
+						//move figura selecionada para baixo
 					}else if(evt.getKeyCode() == 38){//cima
-						//move figura para cima
+						//move figura selecionada para cima
 					}else if(evt.getKeyCode() == 37){//esquerda
-						//move figura para esquerda
+						//move figura selecionada para esquerda
 					}else if(evt.getKeyCode() == 39){//direita
-						//move figura para direita
+						//move figura selecionada para direita
 					}else if(evt.getKeyCode() == 127){//delete
-						//deleta figura
+						//deleta figura selecionada
+						figs.remove(1);//por enquanto remove somente a ultima inserida
+						repaint();
 					}else if(evt.getKeyCode() == 16){//shift
-						//troca figura
+						//troca a selecao de figura
 					}
                 }
             }
