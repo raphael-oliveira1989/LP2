@@ -17,5 +17,9 @@ public abstract class Figure {
         this.y += dy;
     }
 	
+	public void corbg(Color bg){
+		this.bg=bg;
+	}
+
     public abstract void paint (Graphics g);
 }
