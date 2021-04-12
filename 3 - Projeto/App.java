@@ -11,25 +11,11 @@ class App {
     public static void main (String[] args) {
         ListFrame frame = new ListFrame();
         frame.setVisible(true);
-		//new Mover().start();
     }
 }
-/*
-class Mover extends Thread{
-	public void run(){
-		while(true){
-			if(mousepressed){
-				try{sleep(10);}catch(Exception erro){}
-				Point ponto = getMousePosition();
-				frame.setBounds(ponto.x,ponto.y,51,51);
-			}
-		}
-	}
-}
-*/
+
 class ListFrame extends JFrame {
     ArrayList<Figure> figs = new ArrayList<Figure>();
-	boolean mousepressed = false;
     Random rand = new Random();
 	Figure focus = null;
 
@@ -48,82 +34,115 @@ class ListFrame extends JFrame {
 		this.addMouseListener(new MouseAdapter(){
 			/*
 			public void mousePressed(MouseEvent evt){
-				mousepressed = true;
+				
 			}
+			
 			public void mouseReleased(MouseEvent evt){
-				mousepressed = false;
+				
 			}
 			*/
 			public void mouseClicked(MouseEvent evt){
 				focus = null;
-				System.out.format("Mouse clicado na coordenada : ["+evt.getX()+","+evt.getY()+"]");
+				//System.out.format("Mouse clicado na coordenada : ["+evt.getX()+","+evt.getY()+"]");
 				for(Figure fig: figs){
-					System.out.format("Figura na coordenada : ["+fig.x+","+fig.y+"]");
-					/*//seleciona a figura com o mouse
-					if(evt.getX() vs fig.x &&  evt.getY() vs fig.y){
+					//System.out.format("Figura na coordenada : ["+fig.x+","+fig.y+"]");
+					//seleciona a figura com o mouse
+					if((fig.x <= evt.getX() && fig.x + 50 >= evt.getX()) && (fig.y <= evt.getY() && fig.y + 50 >= evt.getY())){
+						//System.out.format("entrou aqui");
 						focus = fig;
+						figs.remove(focus);
+						figs.add(focus);
 						repaint();
 					}
-					*/
 				}
 			}
 		});
-		/*
+		
 		this.addMouseMotionListener(new MouseMotionAdapter(){
 			public void mouseDragged(MouseEvent evt){
 				//arrasta figura com o mouse
 				for(Figure fig: figs){
 					if(focus == fig){
-						fig.drag(fig.x+evt.getX(),fig.y+evt.getY());
+						focus.drag(evt.getX(),evt.getY());
 						repaint();
 					}
 				}
 			}
 		});
-		*/
+	
 		
 		//teclado
         this.addKeyListener (new KeyAdapter() {
                 public void keyPressed (KeyEvent evt) {
-						int x = rand.nextInt(300);
-                        int y = rand.nextInt(300);
+						Point ponto = getMousePosition();
+						int x = ponto.x;
+                        int y = ponto.y;
                         int w = 50;
                         int h = 50;
-						int bgr = rand.nextInt(255);
-						int bgg = rand.nextInt(255);
-						int bgb = rand.nextInt(255);
-						int bdr = rand.nextInt(255);
-						int bdg = rand.nextInt(255);
-						int bdb = rand.nextInt(255);
                     if (evt.getKeyChar() == 'r') {
-                        figs.add(new Rect(x,y, w,h,new Color(bgr,bgg,bgb),new Color(bdr,bdg,bdb)));
+						//cria retangulo
+						//Rect (int x, int y, int w, int h, Color bd, Color bg)
+                        figs.add(new Rect(x,y, w,h,Color.black,Color.white));
                         repaint();  // outer.repaint()
                     }else if (evt.getKeyChar() == 'e') {
-                        figs.add(new Ellipse(x,y, w,h,new Color(bgr,bgg,bgb),new Color(bdr,bdg,bdb)));
+						//cria elipse
+						//Ellipse (int x, int y, int w, int h, Color bd, Color bg)
+                        figs.add(new Ellipse(x,y, w,h,Color.black,Color.white));
                         repaint();  // outer.repaint()
                     }else if (evt.getKeyChar() == 'a') {
+						//cria arco
 						int arci = rand.nextInt(180);
 						int arcf = rand.nextInt(360);
 						int choice = rand.nextInt(3);
-                        figs.add(new Arc(x,y,w,h,arci,arcf,new Color(bgr,bgg,bgb),choice));
+						//Arc (int x, int y, int w, int h, int arci, int arcf, Color bg, int choice)
+                        figs.add(new Arc(x,y,w,h,arci,arcf,Color.black,choice));
                         repaint();  // outer.repaint()
                     }else if (evt.getKeyChar() == 't') {
+						//cria texto
 						//Text (String stg, int x, int y, String font, int size, Color bg) 
 						int size = rand.nextInt(50);
-                        figs.add(new Text("hello",x,y,"Arial",size,new Color(bgr,bgg,bgb)));
+                        figs.add(new Text("hello",x,y,"Arial",size,Color.black));
                         repaint();  // outer.repaint()
                     }else if(evt.getKeyCode() == 40){//baixo
 						//move figura selecionada para baixo
+						for(Figure fig: figs){
+							if(focus == fig){
+								focus.drag(0,1);
+								repaint();
+							}
+						}
 					}else if(evt.getKeyCode() == 38){//cima
 						//move figura selecionada para cima
+						for(Figure fig: figs){
+							if(focus == fig){
+								focus.drag(0,-1);
+								repaint();
+							}
+						}
 					}else if(evt.getKeyCode() == 37){//esquerda
 						//move figura selecionada para esquerda
+						for(Figure fig: figs){
+							if(focus == fig){
+								focus.drag(-1,0);
+								repaint();
+							}
+						}
 					}else if(evt.getKeyCode() == 39){//direita
 						//move figura selecionada para direita
+						for(Figure fig: figs){
+							if(focus == fig){
+								focus.drag(1,0);
+								repaint();
+							}
+						}
 					}else if(evt.getKeyCode() == 127){//delete
 						//deleta figura selecionada
-						figs.remove(1);//por enquanto remove somente a ultima inserida
-						repaint();
+						for(Figure fig: figs){
+							if(focus == fig){
+								figs.remove(focus);
+								repaint();
+							}
+						}
 					}else if(evt.getKeyCode() == 16){//shift
 						//troca a selecao de figura
 					}
