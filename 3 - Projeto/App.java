@@ -147,6 +147,22 @@ class ListFrame extends JFrame {
 								repaint();
 							}
 						}
+                    }else if (evt.getKeyChar() == '5') {
+						//troca a cor de fundo para branco
+						for(Figure fig: figs){
+							if(focus == fig){
+								focus.corbg(Color.white);
+								repaint();
+							}
+						}
+                    }else if (evt.getKeyChar() == '6') {
+						//troca a cor de fundo para preto
+						for(Figure fig: figs){
+							if(focus == fig){
+								focus.corbg(Color.black);
+								repaint();
+							}
+						}
                     }else if(evt.getKeyCode() == 40){//baixo
 						//move figura selecionada para baixo
 						for(Figure fig: figs){
@@ -198,6 +214,8 @@ class ListFrame extends JFrame {
 
         this.setTitle("Projeto");
         this.setSize(800, 600);
+		this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public void paint (Graphics g) {
