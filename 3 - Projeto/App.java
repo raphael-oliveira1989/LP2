@@ -32,15 +32,24 @@ class ListFrame extends JFrame {
 		
 		//mouse
 		this.addMouseListener(new MouseAdapter(){
-			/*
+			
 			public void mousePressed(MouseEvent evt){
-				
+				focus = null;
+				//System.out.format("Mouse clicado na coordenada : ["+evt.getX()+","+evt.getY()+"]");
+				for(Figure fig: figs){
+					//System.out.format("Figura na coordenada : ["+fig.x+","+fig.y+"]");
+					//seleciona a figura com o mouse
+					if((fig.x <= evt.getX() && fig.x + 50 >= evt.getX()) && (fig.y <= evt.getY() && fig.y + 50 >= evt.getY())){
+						//System.out.format("entrou aqui");
+						focus = fig;
+						figs.remove(focus);
+						figs.add(focus);
+						repaint();
+					}
+				}
 			}
 			
-			public void mouseReleased(MouseEvent evt){
-				
-			}
-			*/
+			/*
 			public void mouseClicked(MouseEvent evt){
 				focus = null;
 				//System.out.format("Mouse clicado na coordenada : ["+evt.getX()+","+evt.getY()+"]");
@@ -56,14 +65,16 @@ class ListFrame extends JFrame {
 					}
 				}
 			}
+			*/
 		});
 		
 		this.addMouseMotionListener(new MouseMotionAdapter(){
 			public void mouseDragged(MouseEvent evt){
 				//arrasta figura com o mouse
+				//System.out.format("Mouse arrastado nas coordenadas : ["+evt.getX()+","+evt.getY()+"]");
 				for(Figure fig: figs){
 					if(focus == fig){
-						focus.drag(evt.getX(),evt.getY());
+						focus.drag(0+evt.getX(),0+evt.getY());
 						repaint();
 					}
 				}
@@ -100,7 +111,7 @@ class ListFrame extends JFrame {
                     }else if (evt.getKeyChar() == 't') {
 						//cria texto
 						//Text (String stg, int x, int y, String font, int size, Color bg) 
-						int size = rand.nextInt(50);
+						int size = 20;
                         figs.add(new Text("hello",x,y,"Arial",size,Color.black));
                         repaint();  // outer.repaint()
                     }else if(evt.getKeyCode() == 40){//baixo
