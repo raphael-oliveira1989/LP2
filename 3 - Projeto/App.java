@@ -37,7 +37,7 @@ class ListFrame extends JFrame {
 				focus = null;
 				//System.out.format("Mouse clicado na coordenada : ["+evt.getX()+","+evt.getY()+"]");
 				for(Figure fig: figs){
-					//System.out.format("Figura na coordenada : ["+fig.x+","+fig.y+"]");
+					//System.out.format("Figura na coordenada : ["+fig.x+","+fig.y+"]);
 					//seleciona a figura com o mouse
 					if((fig.x <= evt.getX() && fig.x + 50 >= evt.getX()) && (fig.y <= evt.getY() && fig.y + 50 >= evt.getY())){
 						//System.out.format("entrou aqui");
@@ -116,7 +116,7 @@ class ListFrame extends JFrame {
                         figs.add(new Text("hello",x,y,"Arial",size,Color.black));
                         repaint();  // outer.repaint()
                     }else if (evt.getKeyChar() == '1') {
-						//cria texto
+						//troca a cor de fundo para vermelho
 						for(Figure fig: figs){
 							if(focus == fig){
 								focus.corbg(Color.red);
@@ -124,7 +124,7 @@ class ListFrame extends JFrame {
 							}
 						}
                     }else if (evt.getKeyChar() == '2') {
-						//cria texto
+						//troca a cor de fundo para azul
 						for(Figure fig: figs){
 							if(focus == fig){
 								focus.corbg(Color.blue);
@@ -132,15 +132,15 @@ class ListFrame extends JFrame {
 							}
 						}
                     }else if (evt.getKeyChar() == '3') {
-						//cria texto
+						//troca a cor de fundo para preto
 						for(Figure fig: figs){
 							if(focus == fig){
-								focus.corbg(Color.black);
+								focus.corbg(Color.gray);
 								repaint();
 							}
 						}
                     }else if (evt.getKeyChar() == '4') {
-						//cria texto
+						//troca a cor de fundo para verde
 						for(Figure fig: figs){
 							if(focus == fig){
 								focus.corbg(Color.green);
