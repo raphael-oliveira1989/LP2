@@ -132,7 +132,7 @@ class ListFrame extends JFrame {
 							}
 						}
                     }else if (evt.getKeyChar() == '3') {
-						//troca a cor de fundo para preto
+						//troca a cor de fundo para cinza
 						for(Figure fig: figs){
 							if(focus == fig){
 								focus.corbg(Color.gray);
