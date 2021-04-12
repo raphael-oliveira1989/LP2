@@ -74,7 +74,8 @@ class ListFrame extends JFrame {
 				//System.out.format("Mouse arrastado nas coordenadas : ["+evt.getX()+","+evt.getY()+"]");
 				for(Figure fig: figs){
 					if(focus == fig){
-						focus.drag(0+evt.getX(),0+evt.getY());
+						focus.x = evt.getX()-50/2;
+						focus.y = evt.getY()-50/2;
 						repaint();
 					}
 				}
@@ -114,6 +115,38 @@ class ListFrame extends JFrame {
 						int size = 20;
                         figs.add(new Text("hello",x,y,"Arial",size,Color.black));
                         repaint();  // outer.repaint()
+                    }else if (evt.getKeyChar() == '1') {
+						//cria texto
+						for(Figure fig: figs){
+							if(focus == fig){
+								focus.corbg(Color.red);
+								repaint();
+							}
+						}
+                    }else if (evt.getKeyChar() == '2') {
+						//cria texto
+						for(Figure fig: figs){
+							if(focus == fig){
+								focus.corbg(Color.blue);
+								repaint();
+							}
+						}
+                    }else if (evt.getKeyChar() == '3') {
+						//cria texto
+						for(Figure fig: figs){
+							if(focus == fig){
+								focus.corbg(Color.black);
+								repaint();
+							}
+						}
+                    }else if (evt.getKeyChar() == '4') {
+						//cria texto
+						for(Figure fig: figs){
+							if(focus == fig){
+								focus.corbg(Color.green);
+								repaint();
+							}
+						}
                     }else if(evt.getKeyCode() == 40){//baixo
 						//move figura selecionada para baixo
 						for(Figure fig: figs){
@@ -156,13 +189,15 @@ class ListFrame extends JFrame {
 						}
 					}else if(evt.getKeyCode() == 16){//shift
 						//troca a selecao de figura
-					}
+					}/*else{
+						System.out.format("char, code: ["+evt.getKeyChar()+","+evt.getKeyCode()+"]");
+					}*/
                 }
             }
         );
 
         this.setTitle("Projeto");
-        this.setSize(350, 350);
+        this.setSize(800, 600);
     }
 
     public void paint (Graphics g) {
