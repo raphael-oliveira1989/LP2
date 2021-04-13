@@ -167,7 +167,7 @@ class ListFrame extends JFrame {
 						//aumenta a figura
 						for(Figure fig: figs){
 							if(focus == fig){
-								focus.altera(1,1);
+								focus.tamanho(1,1);
 								repaint();
 							}
 						}
@@ -175,7 +175,7 @@ class ListFrame extends JFrame {
 						//diminui a figura
 						for(Figure fig: figs){
 							if(focus == fig){
-								focus.altera(-1,-1);
+								focus.tamanho(-1,-1);
 								repaint();
 							}
 						}
