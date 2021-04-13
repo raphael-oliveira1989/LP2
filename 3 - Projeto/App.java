@@ -163,6 +163,22 @@ class ListFrame extends JFrame {
 								repaint();
 							}
 						}
+                    }else if (evt.getKeyChar() == '+') {
+						//aumenta a figura
+						for(Figure fig: figs){
+							if(focus == fig){
+								focus.altera(1,1);
+								repaint();
+							}
+						}
+                    }else if (evt.getKeyChar() == '-') {
+						//diminui a figura
+						for(Figure fig: figs){
+							if(focus == fig){
+								focus.altera(-1,-1);
+								repaint();
+							}
+						}
                     }else if(evt.getKeyCode() == 40){//baixo
 						//move figura selecionada para baixo
 						for(Figure fig: figs){
@@ -205,6 +221,12 @@ class ListFrame extends JFrame {
 						}
 					}else if(evt.getKeyCode() == 16){//shift
 						//troca a selecao de figura
+						for (int i = 0; i < figs.size(); i++) {
+							focus = figs.get(i);
+							figs.remove(focus);
+							figs.add(focus);
+							repaint();
+						}
 					}/*else{
 						System.out.format("char, code: ["+evt.getKeyChar()+","+evt.getKeyCode()+"]");
 					}*/
