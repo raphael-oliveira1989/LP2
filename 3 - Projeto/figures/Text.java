@@ -13,7 +13,7 @@ public class Text extends Figure{
 		this.size = size;
     }
 	
-	public void altera(int dw, int dh){
+	public void tamanho(int dw, int dh){
 		this.size += dw+dh;
 	}
 

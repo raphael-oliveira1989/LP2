@@ -21,7 +21,7 @@ public abstract class Figure {
 		this.bg=bg;
 	}
 	
-	public abstract void altera(int dw, int dh);
+	public abstract void tamanho(int dw, int dh);
 	
     public abstract void paint (Graphics g);
 }

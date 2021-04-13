@@ -20,7 +20,7 @@ public class Arc extends Figure{
 		this.choice = choice;
     }
 	
-	public void altera(int dw, int dh){
+	public void tamanho(int dw, int dh){
 		this.w += dw;
 		this.h += dh;
 	}
