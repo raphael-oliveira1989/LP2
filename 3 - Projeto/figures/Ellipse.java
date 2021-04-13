@@ -12,6 +12,11 @@ public class Ellipse extends Figure{
         this.h = h;
 		this.bd = bd;
     }
+	
+	public void altera(int dw, int dh){
+		this.w += dw;
+		this.h += dh;
+	}
 
     public void print () {
         System.out.format("Elipse de tamanho (%d,%d) na posicao (%d,%d).\n",

@@ -20,6 +20,8 @@ public abstract class Figure {
 	public void corbg(Color bg){
 		this.bg=bg;
 	}
-
+	
+	public abstract void altera(int dw, int dh);
+	
     public abstract void paint (Graphics g);
 }

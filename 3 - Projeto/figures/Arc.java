@@ -20,6 +20,12 @@ public class Arc extends Figure{
 		this.choice = choice;
     }
 	
+	public void altera(int dw, int dh){
+		this.w += dw;
+		this.h += dh;
+	}
+
+	
 	public void print () {
         System.out.format("Arco de tamanho (%d,%d) na posicao (%d,%d).\n",
             this.w, this.h, x, y);

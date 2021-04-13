@@ -12,6 +12,10 @@ public class Text extends Figure{
 		this.font = font;
 		this.size = size;
     }
+	
+	public void altera(int dw, int dh){
+		this.size += dw+dh;
+	}
 
     public void paint (Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
