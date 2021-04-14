@@ -6,8 +6,8 @@ public class Text extends Figure{
     private String stg, font;
 	private int size;
 	
-    public Text (String stg, int x, int y, int w, int h, String font, int size, Color bg, Color rcl) {
-        super(x,y,w,h,bg,rcl);
+    public Text (String stg, int x, int y, int w, int h, String font, int size, Color bd, Color bg, Color rcl) {
+		super(x,y,w,h,bd,bg,rcl);
 		this.stg = stg;
 		this.font = font;
 		this.size = size;
@@ -25,7 +25,7 @@ public class Text extends Figure{
 		this.h=metrics.getHeight();
 		this.w=metrics.stringWidth(stg);
 		g2d.setColor(rcl);
-		g2d.drawRect(x-1,y-1,w+1,-(h+1));
+		g2d.drawRect(x-1,y-1,w+2,h+2);
 		g2d.setColor(bg);
 		g2d.drawString(stg,x,y);
     }

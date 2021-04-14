@@ -4,14 +4,15 @@ import java.awt.*;
 
 public abstract class Figure {
 	public int x, y,w,h;
-    public Color bg,rcl;
+    public Color bg,bd,rcl;
 	
-    public Figure (int x, int y, int w, int h, Color bg, Color rcl) {
+    public Figure (int x, int y, int w, int h, Color bd, Color bg, Color rcl) {
         this.x = x;
         this.y = y;
 		this.w = w;
 		this.h = h;
-        this.bg = bg;
+        this.bd = bd;
+		this.bg = bg;
 		this.rcl = rcl;
     }
 
@@ -27,6 +28,10 @@ public abstract class Figure {
 	
 	public void corbg(Color bg){
 		this.bg=bg;
+	}
+	
+	public void corbd(Color bd){
+		this.bd=bd;
 	}
 	
 	public void onfocus(){
