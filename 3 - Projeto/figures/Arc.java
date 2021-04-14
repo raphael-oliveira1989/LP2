@@ -7,24 +7,15 @@ import java.awt.geom.Arc2D.Float;
 
 
 public class Arc extends Figure{
-    private int w, h;
 	private int arci, arcf;
 	private int choice;
 
-    public Arc (int x, int y, int w, int h, int arci, int arcf, Color bg, int choice) {
-        super(x,y,bg);
-        this.w = w;
-        this.h = h;
+    public Arc (int x, int y, int w, int h, int arci, int arcf, Color bg, int choice, Color rcl) {
+        super(x,y,w,h,bg,rcl);
 		this.arci = arci;
 		this.arcf = arcf;
 		this.choice = choice;
     }
-	
-	public void tamanho(int dw, int dh){
-		this.w += dw;
-		this.h += dh;
-	}
-
 	
 	public void print () {
         System.out.format("Arco de tamanho (%d,%d) na posicao (%d,%d).\n",
@@ -33,6 +24,8 @@ public class Arc extends Figure{
 
     public void paint(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
+		g2d.setColor(rcl);
+		g2d.drawRect(x-1,y-1,w+1,h+1);
 		g.setColor(bg);
 		if(this.choice==1){
 			g2d.draw(new Arc2D.Double(x, y, w,h, arci, arcf, Arc2D.OPEN));
