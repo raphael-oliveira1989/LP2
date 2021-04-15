@@ -4,8 +4,8 @@ import java.awt.*;
 
 public class Ellipse extends Figure{
 
-    public Ellipse (int x, int y, int w, int h, Color bd, Color bg, Color rcl) {
-		super(x,y,w,h,bd,bg,rcl);
+    public Ellipse (int x, int y, int w, int h, Color bd, Color bg, Color rcl,char c) {
+		super(x,y,w,h,bd,bg,rcl,c);
     }
 
     public void print () {

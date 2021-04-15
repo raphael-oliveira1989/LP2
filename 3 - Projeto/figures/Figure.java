@@ -5,8 +5,9 @@ import java.awt.*;
 public abstract class Figure {
 	public int x, y,w,h;
     public Color bg,bd,rcl;
+	public char c;
 	
-    public Figure (int x, int y, int w, int h, Color bd, Color bg, Color rcl) {
+    public Figure (int x, int y, int w, int h, Color bd, Color bg, Color rcl,char c) {
         this.x = x;
         this.y = y;
 		this.w = w;
@@ -14,6 +15,7 @@ public abstract class Figure {
         this.bd = bd;
 		this.bg = bg;
 		this.rcl = rcl;
+		this.c = c;
     }
 
     public void drag (int dx, int dy) {

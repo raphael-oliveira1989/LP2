@@ -10,8 +10,8 @@ public class Arc extends Figure{
 	private int arci, arcf;
 	private int choice;
 
-    public Arc (int x, int y, int w, int h, int arci, int arcf, Color bd, Color bg, int choice, Color rcl) {
-        super(x,y,w,h,bd,bg,rcl);
+    public Arc (int x, int y, int w, int h, int arci, int arcf, Color bd, Color bg, int choice, Color rcl,char c) {
+        super(x,y,w,h,bd,bg,rcl,c);
 		this.arci = arci;
 		this.arcf = arcf;
 		this.choice = choice;

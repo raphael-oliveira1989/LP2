@@ -6,8 +6,8 @@ public class Text extends Figure{
     private String stg, font;
 	private int size;
 	
-    public Text (String stg, int x, int y, int w, int h, String font, int size, Color bd, Color bg, Color rcl) {
-		super(x,y,w,h,bd,bg,rcl);
+    public Text (String stg, int x, int y, int w, int h, String font, int size, Color bd, Color bg, Color rcl,char c) {
+		super(x,y,w,h,bd,bg,rcl,c);
 		this.stg = stg;
 		this.font = font;
 		this.size = size;
