@@ -51,6 +51,15 @@ class ListFrame extends JFrame {
 					repaint();
 				}
 			}
+			
+			/*public void mouseReleased(MouseEvent evt) {
+				for(Figure fig: figs){;
+					if(focus == fig){
+						focus.offfocus();
+					}
+				}
+				repaint();
+			}*/
 		});
 		
 		this.addMouseMotionListener(new MouseMotionAdapter(){
@@ -76,15 +85,16 @@ class ListFrame extends JFrame {
                         int y = ponto.y;
                         int w = 50;
                         int h = 50;
-                    if (evt.getKeyChar() == 'r') {
+						char c = evt.getKeyChar();
+                    if (c == 'r') {
 						//cria retangulo
 						//Rect (int x, int y, int w, int h, Color bd, Color bg, Color rcl) 
-                        figs.add(new Rect(x,y, w,h,Color.black,new Color(0,0,0,0),new Color(0,0,0,0)));
+                        figs.add(new Rect(x,y, w,h,Color.black,new Color(0,0,0,0),new Color(0,0,0,0),c));
                         repaint();  // outer.repaint()
                     }else if (evt.getKeyChar() == 'e') {
 						//cria elipse
 						//Ellipse (int x, int y, int w, int h, Color bd, Color bg, Color rcl)
-                        figs.add(new Ellipse(x,y, w,h,Color.black,new Color(0,0,0,0),new Color(0,0,0,0)));
+                        figs.add(new Ellipse(x,y, w,h,Color.black,new Color(0,0,0,0),new Color(0,0,0,0),c));
                         repaint();  // outer.repaint()
                     }else if (evt.getKeyChar() == 'a') {
 						//cria arco
@@ -92,20 +102,20 @@ class ListFrame extends JFrame {
 						int arcf = rand.nextInt(360);
 						int choice = rand.nextInt(3);
 						//Arc (int x, int y, int w, int h, int arci, int arcf, Color bd, Color bg, int choice, Color rcl)
-                        figs.add(new Arc(x,y,w,h,arci,arcf,new Color(0,0,0,0),Color.black,choice,new Color(0,0,0,0)));
+                        figs.add(new Arc(x,y,w,h,arci,arcf,new Color(0,0,0,0),Color.black,choice,new Color(0,0,0,0),c));
                         repaint();  // outer.repaint()
                     }else if (evt.getKeyChar() == 't') {
 						//cria texto
 						//Text (String stg, int x, int y, int w, int h, String font, int size, Color bd, Color bg, Color rcl)
 						int size = 20;
-                        figs.add(new Text("hello",x,y,w,h,"Arial",size,new Color(0,0,0,0),Color.black,new Color(0,0,0,0)));
+                        figs.add(new Text("hello",x,y,w,h,"Arial",size,new Color(0,0,0,0),Color.black,new Color(0,0,0,0),c));
                         repaint();  // outer.repaint()
                     }else if (evt.getKeyChar() == 'c') {
 						//limpa tela
                         figs.clear();
                         repaint();  // outer.repaint()
                     }else if (evt.getKeyChar() == '0') {
-						//troca a cor de fundo para o padrao
+						//troca a cor de fundo para o padrao(na verdade esconde a cor)
 						for(Figure fig: figs){
 							if(focus == fig){
 								focus.corbg(new Color(0,0,0,0));
@@ -137,10 +147,10 @@ class ListFrame extends JFrame {
 							}
 						}
                     }else if (evt.getKeyChar() == '4') {
-						//troca a cor de fundo para verde
+						//troca a cor de fundo para amarelo
 						for(Figure fig: figs){
 							if(focus == fig){
-								focus.corbg(Color.green);
+								focus.corbg(Color.yellow);
 								repaint();
 							}
 						}
@@ -200,16 +210,16 @@ class ListFrame extends JFrame {
 								repaint();
 							}
 						}
-                    }else if (evt.getKeyChar() == '/') {
+                    }/*else if (evt.getKeyChar() == '//tab') {
 						//troca a selecao de figura
-						for (int i = 0; i < figs.size(); i++) {
-							focus = figs.get(i);
+						for(Figure fig: figs){
+							focus=fig;
 							focus.onfocus();
 							figs.remove(focus);
 							figs.add(focus);
 							repaint();
 						}
-                    }else if(evt.getKeyCode() == 40){//baixo
+                    }*/else if(evt.getKeyCode() == 40){//baixo
 						//move figura selecionada para baixo
 						for(Figure fig: figs){
 							if(focus == fig){
@@ -249,9 +259,9 @@ class ListFrame extends JFrame {
 								repaint();
 							}
 						}
-					}else{
+					}/*else{
 						System.out.format("char, code: ["+evt.getKeyChar()+","+evt.getKeyCode()+"]");
-					}
+					}*/
                 }
             }
         );
