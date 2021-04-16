@@ -16,6 +16,7 @@ class App {
 
 class ListFrame extends JFrame {
     ArrayList<Figure> figs = new ArrayList<Figure>();
+	//Rect r;
     Random rand = new Random();
 	Figure focus = null;
 
@@ -41,11 +42,11 @@ class ListFrame extends JFrame {
 					//seleciona a figura com o mouse
 					focus = fig;
 					if((fig.x <= evt.getX() && fig.x + fig.w >= evt.getX()) && (fig.y <= evt.getY() && fig.y + fig.h >= evt.getY())){
-						focus.onfocus();
+						focus = fig;
+						//this.r = new Rect(fig.x,fig.y,fig.w,fig.h,Color.red,new Color(0,0,0,0),'r');
 						figs.remove(focus);
 						figs.add(focus);
 					}else{
-						focus.offfocus();
 						focus = null;
 					}
 					repaint();
@@ -68,8 +69,8 @@ class ListFrame extends JFrame {
 				//System.out.format("Mouse arrastado nas coordenadas : ["+evt.getX()+","+evt.getY()+"]");
 				for(Figure fig: figs){
 					if(focus == fig){
-						focus.x = evt.getX()-focus.w/2;
-						focus.y = evt.getY()-focus.h/2;
+						fig.x = evt.getX()-focus.w/2;
+						fig.y = evt.getY()-focus.h/2;
 						repaint();
 					}
 				}
@@ -88,27 +89,28 @@ class ListFrame extends JFrame {
 						char c = evt.getKeyChar();
                     if (c == 'r') {
 						//cria retangulo
-						//Rect (int x, int y, int w, int h, Color bd, Color bg, Color rcl) 
-                        figs.add(new Rect(x,y, w,h,Color.black,new Color(0,0,0,0),new Color(0,0,0,0),c));
+						//Rect (int x, int y, int w, int h, Color bd, Color bg,char c)
+                        figs.add(new Rect(x,y, w,h,Color.black,new Color(0,0,0,0),c));
                         repaint();  // outer.repaint()
                     }else if (evt.getKeyChar() == 'e') {
 						//cria elipse
-						//Ellipse (int x, int y, int w, int h, Color bd, Color bg, Color rcl)
-                        figs.add(new Ellipse(x,y, w,h,Color.black,new Color(0,0,0,0),new Color(0,0,0,0),c));
+						//Ellipse (int x, int y, int w, int h, Color bd, Color bg,char c)
+                        figs.add(new Ellipse(x,y, w,h,Color.black,new Color(0,0,0,0),c));
                         repaint();  // outer.repaint()
                     }else if (evt.getKeyChar() == 'a') {
 						//cria arco
 						int arci = rand.nextInt(180);
 						int arcf = rand.nextInt(360);
 						int choice = rand.nextInt(3);
-						//Arc (int x, int y, int w, int h, int arci, int arcf, Color bd, Color bg, int choice, Color rcl)
-                        figs.add(new Arc(x,y,w,h,arci,arcf,new Color(0,0,0,0),Color.black,choice,new Color(0,0,0,0),c));
+						//Arc (int x, int y, int w, int h, int arci, int arcf, Color bd, Color bg, int choice,char c)
+                        figs.add(new Arc(x,y,w,h,arci,arcf,new Color(0,0,0,0),Color.black,choice,c));
                         repaint();  // outer.repaint()
                     }else if (evt.getKeyChar() == 't') {
 						//cria texto
-						//Text (String stg, int x, int y, int w, int h, String font, int size, Color bd, Color bg, Color rcl)
+						//Text (String stg, int x, int y, int w, int h, String font, int size, Color bd, Color bg,char c)
 						int size = 20;
-                        figs.add(new Text("hello",x,y,w,h,"Arial",size,new Color(0,0,0,0),Color.black,new Color(0,0,0,0),c));
+						String stg = "hello";
+                        figs.add(new Text(stg,x,y,w,h,"Arial",size,new Color(0,0,0,0),Color.black,c));
                         repaint();  // outer.repaint()
                     }else if (evt.getKeyChar() == 'c') {
 						//limpa tela
@@ -118,7 +120,7 @@ class ListFrame extends JFrame {
 						//troca a cor de fundo para o padrao(na verdade esconde a cor)
 						for(Figure fig: figs){
 							if(focus == fig){
-								focus.corbg(new Color(0,0,0,0));
+								fig.corbg(new Color(0,0,0,0));
 								repaint();
 							}
 						}
@@ -126,7 +128,7 @@ class ListFrame extends JFrame {
 						//troca a cor de fundo para vermelho
 						for(Figure fig: figs){
 							if(focus == fig){
-								focus.corbg(Color.red);
+								fig.corbg(Color.red);
 								repaint();
 							}
 						}
@@ -134,7 +136,7 @@ class ListFrame extends JFrame {
 						//troca a cor de fundo para azul
 						for(Figure fig: figs){
 							if(focus == fig){
-								focus.corbg(Color.blue);
+								fig.corbg(Color.blue);
 								repaint();
 							}
 						}
@@ -142,7 +144,7 @@ class ListFrame extends JFrame {
 						//troca a cor de fundo para cinza
 						for(Figure fig: figs){
 							if(focus == fig){
-								focus.corbg(Color.gray);
+								fig.corbg(Color.gray);
 								repaint();
 							}
 						}
@@ -150,7 +152,7 @@ class ListFrame extends JFrame {
 						//troca a cor de fundo para amarelo
 						for(Figure fig: figs){
 							if(focus == fig){
-								focus.corbg(Color.yellow);
+								fig.corbg(Color.yellow);
 								repaint();
 							}
 						}
@@ -158,7 +160,7 @@ class ListFrame extends JFrame {
 						//troca a cor de fundo para branco
 						for(Figure fig: figs){
 							if(focus == fig){
-								focus.corbg(Color.white);
+								fig.corbg(Color.white);
 								repaint();
 							}
 						}
@@ -166,7 +168,7 @@ class ListFrame extends JFrame {
 						//troca a cor de fundo para preto
 						for(Figure fig: figs){
 							if(focus == fig){
-								focus.corbg(Color.black);
+								fig.corbg(Color.black);
 								repaint();
 							}
 						}
@@ -174,7 +176,7 @@ class ListFrame extends JFrame {
 						//troca a cor de borda para verde
 						for(Figure fig: figs){
 							if(focus == fig){
-								focus.corbd(Color.green);
+								fig.corbd(Color.green);
 								repaint();
 							}
 						}
@@ -182,7 +184,7 @@ class ListFrame extends JFrame {
 						//troca a cor de borda para laranja
 						for(Figure fig: figs){
 							if(focus == fig){
-								focus.corbd(Color.orange);
+								fig.corbd(Color.orange);
 								repaint();
 							}
 						}
@@ -190,7 +192,7 @@ class ListFrame extends JFrame {
 						//troca a cor de borda para preto
 						for(Figure fig: figs){
 							if(focus == fig){
-								focus.corbd(Color.black);
+								fig.corbd(Color.black);
 								repaint();
 							}
 						}
@@ -198,7 +200,7 @@ class ListFrame extends JFrame {
 						//aumenta a figura
 						for(Figure fig: figs){
 							if(focus == fig){
-								focus.tamanho(1,1);
+								fig.tamanho(1,1);
 								repaint();
 							}
 						}
@@ -206,7 +208,7 @@ class ListFrame extends JFrame {
 						//diminui a figura
 						for(Figure fig: figs){
 							if(focus == fig){
-								focus.tamanho(-1,-1);
+								fig.tamanho(-1,-1);
 								repaint();
 							}
 						}
@@ -223,7 +225,7 @@ class ListFrame extends JFrame {
 						//move figura selecionada para baixo
 						for(Figure fig: figs){
 							if(focus == fig){
-								focus.drag(0,1);
+								fig.drag(0,1);
 								repaint();
 							}
 						}
@@ -231,7 +233,7 @@ class ListFrame extends JFrame {
 						//move figura selecionada para cima
 						for(Figure fig: figs){
 							if(focus == fig){
-								focus.drag(0,-1);
+								fig.drag(0,-1);
 								repaint();
 							}
 						}
@@ -239,7 +241,7 @@ class ListFrame extends JFrame {
 						//move figura selecionada para esquerda
 						for(Figure fig: figs){
 							if(focus == fig){
-								focus.drag(-1,0);
+								fig.drag(-1,0);
 								repaint();
 							}
 						}
@@ -247,7 +249,7 @@ class ListFrame extends JFrame {
 						//move figura selecionada para direita
 						for(Figure fig: figs){
 							if(focus == fig){
-								focus.drag(1,0);
+								fig.drag(1,0);
 								repaint();
 							}
 						}
@@ -255,7 +257,7 @@ class ListFrame extends JFrame {
 						//deleta figura selecionada
 						for(Figure fig: figs){
 							if(focus == fig){
-								figs.remove(focus);
+								figs.remove(fig);
 								repaint();
 							}
 						}
@@ -277,5 +279,6 @@ class ListFrame extends JFrame {
         for (Figure fig: this.figs) {
             fig.paint(g);
         }
+		//this.r.paint(g);
     }
 }
