@@ -16,7 +16,7 @@ class App {
 
 class ListFrame extends JFrame {
     ArrayList<Figure> figs = new ArrayList<Figure>();
-	//Rect r;
+	Rect r;
     Random rand = new Random();
 	Figure focus = null;
 
@@ -40,13 +40,13 @@ class ListFrame extends JFrame {
 				for(Figure fig: figs){
 					//System.out.format("Figura na coordenada : ["+fig.x+","+fig.y+"]");
 					//seleciona a figura com o mouse
-					focus = fig;
 					if((fig.x <= evt.getX() && fig.x + fig.w >= evt.getX()) && (fig.y <= evt.getY() && fig.y + fig.h >= evt.getY())){
 						focus = fig;
-						//this.r = new Rect(fig.x,fig.y,fig.w,fig.h,Color.red,new Color(0,0,0,0),'r');
+						r = new Rect(focus.x-1,focus.y-1,focus.w+2,fig.h+2,Color.red,new Color(0,0,0,0),'r');
 						figs.remove(focus);
 						figs.add(focus);
 					}else{
+						r.corbd(new Color(0,0,0,0));
 						focus = null;
 					}
 					repaint();
@@ -69,8 +69,10 @@ class ListFrame extends JFrame {
 				//System.out.format("Mouse arrastado nas coordenadas : ["+evt.getX()+","+evt.getY()+"]");
 				for(Figure fig: figs){
 					if(focus == fig){
-						fig.x = evt.getX()-focus.w/2;
-						fig.y = evt.getY()-focus.h/2;
+						focus.x = evt.getX()-focus.w/2;
+						focus.y = evt.getY()-focus.h/2;
+						r.x = focus.x-1;
+						r.y = focus.y-1;
 						repaint();
 					}
 				}
@@ -201,6 +203,7 @@ class ListFrame extends JFrame {
 						for(Figure fig: figs){
 							if(focus == fig){
 								fig.tamanho(1,1);
+								r.tamanho(1,1);
 								repaint();
 							}
 						}
@@ -209,6 +212,7 @@ class ListFrame extends JFrame {
 						for(Figure fig: figs){
 							if(focus == fig){
 								fig.tamanho(-1,-1);
+								r.tamanho(-1,-1);
 								repaint();
 							}
 						}
@@ -226,6 +230,7 @@ class ListFrame extends JFrame {
 						for(Figure fig: figs){
 							if(focus == fig){
 								fig.drag(0,1);
+								r.drag(0,1);
 								repaint();
 							}
 						}
@@ -234,6 +239,7 @@ class ListFrame extends JFrame {
 						for(Figure fig: figs){
 							if(focus == fig){
 								fig.drag(0,-1);
+								r.drag(0,-1);
 								repaint();
 							}
 						}
@@ -242,6 +248,7 @@ class ListFrame extends JFrame {
 						for(Figure fig: figs){
 							if(focus == fig){
 								fig.drag(-1,0);
+								r.drag(-1,0);
 								repaint();
 							}
 						}
@@ -250,6 +257,7 @@ class ListFrame extends JFrame {
 						for(Figure fig: figs){
 							if(focus == fig){
 								fig.drag(1,0);
+								r.drag(1,0);
 								repaint();
 							}
 						}
@@ -279,6 +287,6 @@ class ListFrame extends JFrame {
         for (Figure fig: this.figs) {
             fig.paint(g);
         }
-		//this.r.paint(g);
+		this.r.paint(g);
     }
 }
