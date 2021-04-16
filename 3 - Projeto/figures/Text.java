@@ -3,11 +3,11 @@ package figures;
 import java.awt.*;
 
 public class Text extends Figure{
-    private String stg, font;
+    private String stg,font;
 	private int size;
 	
-    public Text (String stg, int x, int y, int w, int h, String font, int size, Color bd, Color bg, Color rcl,char c) {
-		super(x,y,w,h,bd,bg,rcl,c);
+    public Text (String stg, int x, int y, int w, int h, String font, int size, Color bd, Color bg,char c) {
+		super(x,y,w,h,bd,bg,c);
 		this.stg = stg;
 		this.font = font;
 		this.size = size;
@@ -24,8 +24,6 @@ public class Text extends Figure{
 		FontMetrics metrics = g.getFontMetrics();
 		this.h=metrics.getHeight();
 		this.w=metrics.stringWidth(stg);
-		g2d.setColor(rcl);
-		g2d.drawRect(x-1,y-1,w+2,h+2);
 		g2d.setColor(bg);
 		g2d.drawString(stg,x,y);
     }
