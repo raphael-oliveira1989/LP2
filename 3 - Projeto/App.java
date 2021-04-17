@@ -117,6 +117,7 @@ class ListFrame extends JFrame {
                     }else if (evt.getKeyChar() == 'c') {
 						//limpa tela
                         figs.clear();
+						r.corbd(new Color(0,0,0,0));
                         repaint();  // outer.repaint()
                     }else if (evt.getKeyChar() == '0') {
 						//troca a cor de fundo para o padrao(na verdade esconde a cor)
@@ -266,6 +267,7 @@ class ListFrame extends JFrame {
 						for(Figure fig: figs){
 							if(focus == fig){
 								figs.remove(fig);
+								r.corbd(new Color(0,0,0,0));
 								repaint();
 							}
 						}
