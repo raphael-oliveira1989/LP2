@@ -16,7 +16,7 @@ class App {
 
 class ListFrame extends JFrame {
     ArrayList<Figure> figs = new ArrayList<Figure>();
-	Rect r;
+	Rect r = new Rect(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0),'r');
     Random rand = new Random();
 	Figure focus = null;
 
@@ -52,15 +52,6 @@ class ListFrame extends JFrame {
 					repaint();
 				}
 			}
-			
-			/*public void mouseReleased(MouseEvent evt) {
-				for(Figure fig: figs){;
-					if(focus == fig){
-						focus.offfocus();
-					}
-				}
-				repaint();
-			}*/
 		});
 		
 		this.addMouseMotionListener(new MouseMotionAdapter(){
@@ -279,7 +270,8 @@ class ListFrame extends JFrame {
         );
 
         this.setTitle("Projeto");
-        this.setSize(800, 600);
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		this.setUndecorated(false);
 		this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
