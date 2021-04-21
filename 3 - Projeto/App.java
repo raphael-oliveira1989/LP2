@@ -42,7 +42,11 @@ class ListFrame extends JFrame {
 					//seleciona a figura com o mouse
 					if((fig.x <= evt.getX() && fig.x + fig.w >= evt.getX()) && (fig.y <= evt.getY() && fig.y + fig.h >= evt.getY())){
 						focus = fig;
-						r = new Rect(focus.x-1,focus.y-1,focus.w+2,fig.h+2,Color.red,new Color(0,0,0,0),'r');
+						if (fig.c == 't'){
+							r = new Rect(focus.x-1,focus.y-20,focus.w+2,fig.h+5,Color.red,new Color(0,0,0,0),'r');
+						}else{
+							r = new Rect(focus.x-1,focus.y-1,focus.w+2,fig.h+2,Color.red,new Color(0,0,0,0),'r');
+						}
 						figs.remove(focus);
 						figs.add(focus);
 					}else{
@@ -63,7 +67,11 @@ class ListFrame extends JFrame {
 						focus.x = evt.getX()-focus.w/2;
 						focus.y = evt.getY()-focus.h/2;
 						r.x = focus.x-1;
-						r.y = focus.y-1;
+						if (fig.c == 't'){
+							r.y = focus.y-20;
+						}else{
+							r.y = focus.y-1;
+						}
 						repaint();
 					}
 				}
@@ -85,12 +93,12 @@ class ListFrame extends JFrame {
 						//Rect (int x, int y, int w, int h, Color bd, Color bg,char c)
                         figs.add(new Rect(x,y, w,h,Color.black,new Color(0,0,0,0),c));
                         repaint();  // outer.repaint()
-                    }else if (evt.getKeyChar() == 'e') {
+                    }else if (c == 'e') {
 						//cria elipse
 						//Ellipse (int x, int y, int w, int h, Color bd, Color bg,char c)
                         figs.add(new Ellipse(x,y, w,h,Color.black,new Color(0,0,0,0),c));
                         repaint();  // outer.repaint()
-                    }else if (evt.getKeyChar() == 'a') {
+                    }else if (c == 'a') {
 						//cria arco
 						int arci = rand.nextInt(180);
 						int arcf = rand.nextInt(360);
@@ -98,19 +106,19 @@ class ListFrame extends JFrame {
 						//Arc (int x, int y, int w, int h, int arci, int arcf, Color bd, Color bg, int choice,char c)
                         figs.add(new Arc(x,y,w,h,arci,arcf,new Color(0,0,0,0),Color.black,choice,c));
                         repaint();  // outer.repaint()
-                    }else if (evt.getKeyChar() == 't') {
+                    }else if (c == 't') {
 						//cria texto
 						//Text (String stg, int x, int y, int w, int h, String font, int size, Color bd, Color bg,char c)
 						int size = 20;
 						String stg = "hello";
                         figs.add(new Text(stg,x,y,w,h,"Arial",size,new Color(0,0,0,0),Color.black,c));
                         repaint();  // outer.repaint()
-                    }else if (evt.getKeyChar() == 'c') {
+                    }else if (c == 'c') {
 						//limpa tela
                         figs.clear();
 						r.corbd(new Color(0,0,0,0));
                         repaint();  // outer.repaint()
-                    }else if (evt.getKeyChar() == '0') {
+                    }else if (c == '0') {
 						//troca a cor de fundo para o padrao(na verdade esconde a cor)
 						for(Figure fig: figs){
 							if(focus == fig){
@@ -118,7 +126,7 @@ class ListFrame extends JFrame {
 								repaint();
 							}
 						}
-                    }else if (evt.getKeyChar() == '1') {
+                    }else if (c == '1') {
 						//troca a cor de fundo para vermelho
 						for(Figure fig: figs){
 							if(focus == fig){
@@ -126,7 +134,7 @@ class ListFrame extends JFrame {
 								repaint();
 							}
 						}
-                    }else if (evt.getKeyChar() == '2') {
+                    }else if (c == '2') {
 						//troca a cor de fundo para azul
 						for(Figure fig: figs){
 							if(focus == fig){
@@ -134,7 +142,7 @@ class ListFrame extends JFrame {
 								repaint();
 							}
 						}
-                    }else if (evt.getKeyChar() == '3') {
+                    }else if (c == '3') {
 						//troca a cor de fundo para cinza
 						for(Figure fig: figs){
 							if(focus == fig){
@@ -142,7 +150,7 @@ class ListFrame extends JFrame {
 								repaint();
 							}
 						}
-                    }else if (evt.getKeyChar() == '4') {
+                    }else if (c == '4') {
 						//troca a cor de fundo para amarelo
 						for(Figure fig: figs){
 							if(focus == fig){
@@ -150,7 +158,7 @@ class ListFrame extends JFrame {
 								repaint();
 							}
 						}
-                    }else if (evt.getKeyChar() == '5') {
+                    }else if (c == '5') {
 						//troca a cor de fundo para branco
 						for(Figure fig: figs){
 							if(focus == fig){
@@ -158,7 +166,7 @@ class ListFrame extends JFrame {
 								repaint();
 							}
 						}
-                    }else if (evt.getKeyChar() == '6') {
+                    }else if (c == '6') {
 						//troca a cor de fundo para preto
 						for(Figure fig: figs){
 							if(focus == fig){
@@ -166,7 +174,7 @@ class ListFrame extends JFrame {
 								repaint();
 							}
 						}
-                    }else if (evt.getKeyChar() == '7') {
+                    }else if (c == '7') {
 						//troca a cor de borda para verde
 						for(Figure fig: figs){
 							if(focus == fig){
@@ -174,7 +182,7 @@ class ListFrame extends JFrame {
 								repaint();
 							}
 						}
-                    }else if (evt.getKeyChar() == '8') {
+                    }else if (c == '8') {
 						//troca a cor de borda para laranja
 						for(Figure fig: figs){
 							if(focus == fig){
@@ -182,7 +190,7 @@ class ListFrame extends JFrame {
 								repaint();
 							}
 						}
-                    }else if (evt.getKeyChar() == '9') {
+                    }else if (c == '9') {
 						//troca a cor de borda para preto
 						for(Figure fig: figs){
 							if(focus == fig){
@@ -190,29 +198,37 @@ class ListFrame extends JFrame {
 								repaint();
 							}
 						}
-                    }else if (evt.getKeyChar() == '+') {
+                    }else if (c == '+') {
 						//aumenta a figura
 						for(Figure fig: figs){
 							if(focus == fig){
 								fig.tamanho(1,1);
-								r.tamanho(1,1);
+								if(fig.c == 't'){
+									r.tamanho(3,2);
+								}else{
+									r.tamanho(1,1);
+								}
 								repaint();
 							}
 						}
-                    }else if (evt.getKeyChar() == '-') {
+                    }else if (c == '-') {
 						//diminui a figura
 						for(Figure fig: figs){
 							if(focus == fig){
 								fig.tamanho(-1,-1);
-								r.tamanho(-1,-1);
+								if(fig.c == 't'){
+									r.tamanho(-3,-2);
+								}else{
+									r.tamanho(-1,-1);
+								}
 								repaint();
 							}
 						}
-                    }/*else if (evt.getKeyChar() == '//tab') {
+                    }/*else if (c == KeyEvent.VK_TAB) {
 						//troca a selecao de figura
 						for(Figure fig: figs){
 							focus=fig;
-							focus.onfocus();
+							r = new Rect(focus.x-1,focus.y-1,focus.w+2,fig.h+2,Color.red,new Color(0,0,0,0),'r');
 							figs.remove(focus);
 							figs.add(focus);
 							repaint();
