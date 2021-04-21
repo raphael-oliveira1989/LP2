@@ -15,6 +15,9 @@ public class Text extends Figure{
 	
 	//override
 	public void tamanho(int dw, int dh){
+		this.w += dw;
+		this.h += dh;
+		this.y += (dw+dh)/2;
 		this.size += (dw+dh)/2;
 	}
 
