@@ -43,9 +43,11 @@ class ListFrame extends JFrame {
 					if((fig.x <= evt.getX() && fig.x + fig.w >= evt.getX()) && (fig.y <= evt.getY() && fig.y + fig.h >= evt.getY())){
 						focus = fig;
 						if (fig.c == 't'){
-							r = new Rect(focus.x-1,focus.y-20,focus.w+2,fig.h+5,Color.red,new Color(0,0,0,0),'r');
+							r.set(focus.x-1,focus.y-20,focus.w+2,fig.h+5);
+							r.corbd(Color.red);
 						}else{
-							r = new Rect(focus.x-1,focus.y-1,focus.w+2,fig.h+2,Color.red,new Color(0,0,0,0),'r');
+							r.set(focus.x-1,focus.y-1,focus.w+2,fig.h+2);
+							r.corbd(Color.red);
 						}
 						figs.remove(focus);
 						figs.add(focus);
