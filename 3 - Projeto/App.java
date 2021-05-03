@@ -19,6 +19,7 @@ class ListFrame extends JFrame {
 	Rect r = new Rect(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0),'r');
     Random rand = new Random();
 	Figure focus = null;
+	int i = 0;
 
 
     ListFrame () {
@@ -34,27 +35,25 @@ class ListFrame extends JFrame {
 		//mouse
 		this.addMouseListener(new MouseAdapter(){
 			public void mousePressed(MouseEvent evt){
-				focus = null;
-				//System.out.format("Mouse clicado na coordenada : ["+evt.getX()+","+evt.getY()+"]");
-				for(int i=0;i<figs.size();i++){
-					//System.out.format("Figura na coordenada : ["+fig.x+","+fig.y+"]");
-					//seleciona a figura com o mouse
+				Figure aux = new Rect(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0),'r');
+				for(i=0;i<figs.size();i++){
 					focus = figs.get(i);
 					if((focus.x <= evt.getX() && focus.x + focus.w >= evt.getX()) && (focus.y <= evt.getY() && focus.y + focus.h >= evt.getY())){
-						if (focus.c == 't'){
-							r.set(focus.x-1,focus.y-20,focus.w+2,focus.h+5);
-							r.corbd(Color.red);
-						}else{
-							r.set(focus.x-1,focus.y-1,focus.w+2,focus.h+2);
-							r.corbd(Color.red);
-						}
-						figs.remove(focus);
-						figs.add(focus);
+						aux=focus;
 					}else{
 						r.corbd(new Color(0,0,0,0));
-						focus = null;
+						//aux = null;
 					}
 				}
+				if (aux.c == 't'){
+							r.set(aux.x-1,aux.y-20,aux.w+2,aux.h+5);
+							r.corbd(Color.red);
+				}else{
+							r.set(aux.x-1,aux.y-1,aux.w+2,aux.h+2);
+							r.corbd(Color.red);
+				}
+				figs.remove(aux);
+				figs.add(aux);
 				repaint();
 			}
 		});
@@ -225,10 +224,10 @@ class ListFrame extends JFrame {
 								repaint();
 							}
 						}
-                    }else if (c == '/') {
+                    }else if(c == '/'){
 						//troca a selecao de figura (tab)
 						//System.out.format("Elementos no vetor: ["+figs.size()+"]");
-						for(int i=0;i<figs.size();i++){
+						for(i=0;i<figs.size();i++){
 							focus = figs.get(i);
 							if (focus.c == 't'){
 								r.set(focus.x-1,focus.y-20,focus.w+2,focus.h+5);
@@ -241,7 +240,7 @@ class ListFrame extends JFrame {
 							figs.add(focus);
 						}
 						repaint();
-                    }else if(evt.getKeyCode() == 40){//baixo
+                    }if(evt.getKeyCode() == 40){//baixo
 						//move figura selecionada para baixo
 						for(Figure fig: figs){
 							if(focus == fig){
