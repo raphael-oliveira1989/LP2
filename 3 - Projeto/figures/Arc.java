@@ -7,8 +7,8 @@ import java.awt.geom.Arc2D.Float;
 
 
 public class Arc extends Figure{
-	private int arci, arcf;
-	private int choice;
+	public int arci, arcf;
+	public int choice;
 
     public Arc (int x, int y, int w, int h, int arci, int arcf, Color bd, Color bg, int choice,char c) {
         super(x,y,w,h,bd,bg,c);
