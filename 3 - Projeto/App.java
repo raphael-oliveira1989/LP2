@@ -33,20 +33,19 @@ class ListFrame extends JFrame {
 		
 		//mouse
 		this.addMouseListener(new MouseAdapter(){
-			
 			public void mousePressed(MouseEvent evt){
 				focus = null;
 				//System.out.format("Mouse clicado na coordenada : ["+evt.getX()+","+evt.getY()+"]");
-				for(Figure fig: figs){
+				for(int i=0;i<figs.size();i++){
 					//System.out.format("Figura na coordenada : ["+fig.x+","+fig.y+"]");
 					//seleciona a figura com o mouse
-					if((fig.x <= evt.getX() && fig.x + fig.w >= evt.getX()) && (fig.y <= evt.getY() && fig.y + fig.h >= evt.getY())){
-						focus = fig;
-						if (fig.c == 't'){
-							r.set(focus.x-1,focus.y-20,focus.w+2,fig.h+5);
+					focus = figs.get(i);
+					if((focus.x <= evt.getX() && focus.x + focus.w >= evt.getX()) && (focus.y <= evt.getY() && focus.y + focus.h >= evt.getY())){
+						if (focus.c == 't'){
+							r.set(focus.x-1,focus.y-20,focus.w+2,focus.h+5);
 							r.corbd(Color.red);
 						}else{
-							r.set(focus.x-1,focus.y-1,focus.w+2,fig.h+2);
+							r.set(focus.x-1,focus.y-1,focus.w+2,focus.h+2);
 							r.corbd(Color.red);
 						}
 						figs.remove(focus);
@@ -55,8 +54,8 @@ class ListFrame extends JFrame {
 						r.corbd(new Color(0,0,0,0));
 						focus = null;
 					}
-					repaint();
 				}
+				repaint();
 			}
 		});
 		
@@ -226,16 +225,23 @@ class ListFrame extends JFrame {
 								repaint();
 							}
 						}
-                    }/*else if (c == KeyEvent.VK_TAB) {
-						//troca a selecao de figura
-						for(Figure fig: figs){
-							focus=fig;
-							r = new Rect(focus.x-1,focus.y-1,focus.w+2,fig.h+2,Color.red,new Color(0,0,0,0),'r');
+                    }else if (c == '/') {
+						//troca a selecao de figura (tab)
+						//System.out.format("Elementos no vetor: ["+figs.size()+"]");
+						for(int i=0;i<figs.size();i++){
+							focus = figs.get(i);
+							if (focus.c == 't'){
+								r.set(focus.x-1,focus.y-20,focus.w+2,focus.h+5);
+								r.corbd(Color.red);
+							}else{
+								r.set(focus.x-1,focus.y-1,focus.w+2,focus.h+2);
+								r.corbd(Color.red);
+							}
 							figs.remove(focus);
 							figs.add(focus);
-							repaint();
 						}
-                    }*/else if(evt.getKeyCode() == 40){//baixo
+						repaint();
+                    }else if(evt.getKeyCode() == 40){//baixo
 						//move figura selecionada para baixo
 						for(Figure fig: figs){
 							if(focus == fig){
@@ -293,7 +299,7 @@ class ListFrame extends JFrame {
 		this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-
+	
     public void paint (Graphics g) {
         super.paint(g);
         for (Figure fig: this.figs) {
