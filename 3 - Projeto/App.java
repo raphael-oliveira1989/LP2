@@ -35,11 +35,10 @@ class ListFrame extends JFrame {
 		this.addMouseListener(new MouseAdapter(){
 			public void mousePressed(MouseEvent evt){
 				Figure aux = new Ellipse(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0),'e');
-				Figure fig = aux;
 				r.corbd(new Color(0,0,0,0));
 				focus = aux;
-				for(int i=0;i<figs.size();i++){
-					fig = figs.get(i);
+				for(Figure fig: figs){
+					//fig = figs.get(i);
 					if((fig.x <= evt.getX() && fig.x + fig.w >= evt.getX()) && (fig.y <= evt.getY() && fig.y + fig.h >= evt.getY())){
 						//System.out.format("Clicou na figura\n");
 						focus = fig;
@@ -50,11 +49,6 @@ class ListFrame extends JFrame {
 							r.set(focus.x-1,focus.y-1,focus.w+2,focus.h+2);
 							r.corbd(Color.red);
 						}
-						i++;
-					}else{
-						//System.out.format("Clicou fora da figura\n");
-						r.corbd(new Color(0,0,0,0));
-						//focus = aux;
 					}
 				}
 				figs.remove(focus);
