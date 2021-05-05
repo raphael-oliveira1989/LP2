@@ -63,8 +63,8 @@ class ListFrame extends JFrame {
 				//System.out.format("Mouse arrastado nas coordenadas : ["+evt.getX()+","+evt.getY()+"]");
 				for(Figure fig: figs){
 					if(focus == fig){
-						focus.x = evt.getX()-focus.w/2;
-						focus.y = evt.getY()-focus.h/2;
+						fig.x = evt.getX()-focus.w/2;
+						fig.y = evt.getY()-focus.h/2;
 						r.x = focus.x-1;
 						if (fig.c == 't'){
 							r.y = focus.y-20;
