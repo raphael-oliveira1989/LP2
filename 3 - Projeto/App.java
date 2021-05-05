@@ -18,7 +18,7 @@ class ListFrame extends JFrame {
     ArrayList<Figure> figs = new ArrayList<Figure>();
 	Rect r = new Rect(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0),'r');
     Random rand = new Random();
-	Figure focus = new Rect(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0),'r');
+	Figure focus = new Ellipse(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0),'e');
 
 
     ListFrame () {
@@ -34,21 +34,28 @@ class ListFrame extends JFrame {
 		//mouse
 		this.addMouseListener(new MouseAdapter(){
 			public void mousePressed(MouseEvent evt){
-				//Figure aux = new Rect(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0),'r');
-				for(Figure fig: figs){
+				Figure aux = new Ellipse(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0),'e');
+				Figure fig = aux;
+				r.corbd(new Color(0,0,0,0));
+				focus = aux;
+				for(int i=0;i<figs.size();i++){
+					fig = figs.get(i);
 					if((fig.x <= evt.getX() && fig.x + fig.w >= evt.getX()) && (fig.y <= evt.getY() && fig.y + fig.h >= evt.getY())){
-						//System.out.format("Clicou na figura");
+						//System.out.format("Clicou na figura\n");
 						focus = fig;
+						if (focus.c == 't'){
+							r.set(focus.x-1,focus.y-20,focus.w+2,focus.h+5);
+							r.corbd(Color.red);
+						}else{
+							r.set(focus.x-1,focus.y-1,focus.w+2,focus.h+2);
+							r.corbd(Color.red);
+						}
+						i++;
 					}else{
+						//System.out.format("Clicou fora da figura\n");
 						r.corbd(new Color(0,0,0,0));
+						//focus = aux;
 					}
-				}
-				if (focus.c == 't'){
-					r.set(focus.x-1,focus.y-20,focus.w+2,focus.h+5);
-					r.corbd(Color.red);
-				}else{
-					r.set(focus.x-1,focus.y-1,focus.w+2,focus.h+2);
-					r.corbd(Color.red);
 				}
 				figs.remove(focus);
 				figs.add(focus);
@@ -225,8 +232,13 @@ class ListFrame extends JFrame {
                     }/*else if(c == '/'){
 						//troca a selecao de figura (tab)
 						//System.out.format("Elementos no vetor: ["+figs.size()+"]");
-						for(i=0;i<figs.size();i++){
-							focus = figs.get(i);
+						Figure aux = new Ellipse(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0),'e');
+						Figure fig = aux;
+						r.corbd(new Color(0,0,0,0));
+						focus = aux;
+						for(int i=0;i<figs.size();i++){
+							fig = figs.get(i);
+							focus = fig;
 							if (focus.c == 't'){
 								r.set(focus.x-1,focus.y-20,focus.w+2,focus.h+5);
 								r.corbd(Color.red);
@@ -234,9 +246,10 @@ class ListFrame extends JFrame {
 								r.set(focus.x-1,focus.y-1,focus.w+2,focus.h+2);
 								r.corbd(Color.red);
 							}
-							figs.remove(focus);
-							figs.add(focus);
+							i++;
 						}
+						figs.remove(focus);
+						figs.add(focus);
 						repaint();
                     }*/if(evt.getKeyCode() == 40){//baixo
 						//move figura selecionada para baixo
@@ -291,7 +304,8 @@ class ListFrame extends JFrame {
         );
 
         this.setTitle("Projeto");
-		this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		//this.setSize(350, 350);
 		this.setUndecorated(false);
 		this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
