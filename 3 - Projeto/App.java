@@ -287,13 +287,15 @@ class ListFrame extends JFrame {
 						}
 					}else if(evt.getKeyCode() == 127){//delete
 						//deleta figura selecionada
+						Figure aux = new Ellipse(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0),'e');
 						for(Figure fig: figs){
 							if(focus == fig){
-								figs.remove(fig);
+								aux = fig;
 								r.corbd(new Color(0,0,0,0));
-								repaint();
 							}
 						}
+						figs.remove(focus);
+						repaint();
 					}/*else{
 						System.out.format("char, code: ["+evt.getKeyChar()+","+evt.getKeyCode()+"]");
 					}*/
