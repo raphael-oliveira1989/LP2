@@ -229,7 +229,7 @@ class ListFrame extends JFrame {
 								repaint();
 							}
 						}
-                    }/*else if(c == '/'){
+                    }else if(c == '/'){
 						//troca a selecao de figura (tab)
 						//System.out.format("Elementos no vetor: ["+figs.size()+"]");
 						Figure aux = new Ellipse(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0),'e');
@@ -246,12 +246,16 @@ class ListFrame extends JFrame {
 								r.set(focus.x-1,focus.y-1,focus.w+2,focus.h+2);
 								r.corbd(Color.red);
 							}
-							i++;
+							//i++;
+							figs.remove(focus);
+							figs.add(focus);
 						}
+						/*
 						figs.remove(focus);
 						figs.add(focus);
+						*/
 						repaint();
-                    }*/if(evt.getKeyCode() == 40){//baixo
+                    }if(evt.getKeyCode() == 40){//baixo
 						//move figura selecionada para baixo
 						for(Figure fig: figs){
 							if(focus == fig){
