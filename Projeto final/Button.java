@@ -7,6 +7,7 @@ public class Button implements IVisible{
 	public int idx, x,y,w,h;
 	public Color bg = Color.lightGray;;
 	private Figure fig;
+	private int aux;
 	
 	public Button(int idx, Figure fig){
 		this.idx = idx;
@@ -18,7 +19,7 @@ public class Button implements IVisible{
 	}
 	
 	public boolean clicked(int x, int y){
-        return (this.x<=x && x<=this.x+this.w && this.y<=y && y<=this.y+this.h);
+        return (this.x<=x && x<=this.x+this.w && this.aux<=y && y<=this.aux+this.h);
 	}
 	
 	public int get(){
@@ -31,7 +32,7 @@ public class Button implements IVisible{
 	public void paint(Graphics g){
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setColor(Color.black);
-		int aux = y;
+		aux = y;
 		if(idx==0){
 			g2d.drawRect(x,aux,w,h);
 			g2d.setColor(bg);

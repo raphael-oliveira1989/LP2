@@ -263,6 +263,8 @@ class IfaceFrame extends JFrame {
 					if (but.clicked(x,y)){
 						but.set(Color.gray);
 						//System.out.format("Clicou no botao\n");
+					}else{
+						but.set(Color.lightGray);
 					}
 				}
                 for (Figure fig: figs) {
