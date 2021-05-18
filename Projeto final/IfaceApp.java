@@ -23,14 +23,14 @@ class IfaceFrame extends JFrame {
 
     IfaceFrame () {
 		buts.add(new Button(0,new Rect(0,0,0,0,Color.black,Color.black,'r')));
-		buts.add(new Button(1,new Ellipse(0,0,0,0,Color.black,new Color(0,0,0,0),'e')));
-		buts.add(new Button(2,new Arc(0,0,0,0,0,120,new Color(0,0,0,0),Color.black,1,'a')));
-		buts.add(new Button(3,new Text("T",0,0,0,0,"Arial",10,new Color(0,0,0,0),Color.black,'t')));
+		buts.add(new Button(1,new Ellipse(0,0,0,0,Color.black,Color.black,'e')));
+		buts.add(new Button(2,new Arc(0,0,0,0,30,190,new Color(0,0,0,0),Color.black,1,'a')));
+		buts.add(new Button(3,new Text("T",0,0,0,0,"Arial",25,new Color(0,0,0,0),Color.black,'t')));
 		
 		//janela
         this.addWindowListener (new WindowAdapter() {
             public void windowClosing (WindowEvent e) {
-                System.exit(0);
+                 System.exit(0);
             }
         });
 		
@@ -259,6 +259,12 @@ class IfaceFrame extends JFrame {
 				focus = aux;
                 int x = evt.getX();
                 int y = evt.getY();
+				for (Button but: buts){
+					if (but.clicked(x,y)){
+						but.set(Color.gray);
+						//System.out.format("Clicou no botao\n");
+					}
+				}
                 for (Figure fig: figs) {
                     if (fig.clicked(x,y)) {
                         focus = fig;
