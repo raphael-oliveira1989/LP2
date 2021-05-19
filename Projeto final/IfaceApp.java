@@ -19,12 +19,12 @@ class IfaceFrame extends JFrame {
     Random rand = new Random();
 	Rect r = new Rect(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0),'r');
 	Figure focus = new Ellipse(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0),'e');
-	Button focus_button = null;
+	Button focus_button = new Button(-1,new Ellipse(0,0,0,0,Color.black,Color.black,'e'));
 
     IfaceFrame () {
 		buts.add(new Button(0,new Rect(0,0,0,0,Color.black,Color.black,'r')));
 		buts.add(new Button(1,new Ellipse(0,0,0,0,Color.black,Color.black,'e')));
-		buts.add(new Button(2,new Arc(0,0,0,0,30,190,new Color(0,0,0,0),Color.black,1,'a')));
+		buts.add(new Button(2,new Arc(0,0,0,0,30,190,new Color(0,0,0,0),Color.black,'a')));
 		buts.add(new Button(3,new Text("T",0,0,0,0,"Arial",25,new Color(0,0,0,0),Color.black,'t')));
 		
 		//janela
@@ -56,10 +56,13 @@ class IfaceFrame extends JFrame {
             }else if (c == 'a') {
 				//cria arco
 				int arci = rand.nextInt(180);
-				int arcf = rand.nextInt(360);
-				int choice = rand.nextInt(3);
-				//Arc (int x, int y, int w, int h, int arci, int arcf, Color bd, Color bg, int choice,char c)
-                figs.add(new Arc(x,y,w,h,arci,arcf,new Color(0,0,0,0),Color.black,choice,c));
+				int a = rand.nextInt(360);
+				while (a<=180){
+					a = rand.nextInt(360);
+				}
+				int arcf = a;
+				//Arc (int x, int y, int w, int h, int arci, int arcf, Color bd, Color bg,char c)
+                figs.add(new Arc(x,y,w,h,arci,arcf,new Color(0,0,0,0),Color.black,c));
                 repaint();  // outer.repaint()
             }else if (c == 't') {
 				//cria texto
@@ -259,12 +262,36 @@ class IfaceFrame extends JFrame {
 				focus = aux;
                 int x = evt.getX();
                 int y = evt.getY();
+				int w = 50;
+				int h = 50;
+				Button aux_button = new Button(-1,new Ellipse(0,0,0,0,Color.black,Color.black,'e'));
+				focus_button = aux_button;
 				for (Button but: buts){
 					if (but.clicked(x,y)){
+						focus_button = but;
 						but.set(Color.gray);
 						//System.out.format("Clicou no botao\n");
 					}else{
 						but.set(Color.lightGray);
+					}
+				}
+				if (focus_button.idx != -1){
+					if (focus_button.idx==0){
+						figs.add(new Rect(x,y, w,h,Color.black,new Color(0,0,0,0),'r'));
+					}else if (focus_button.idx==1){
+						figs.add(new Ellipse(x,y, w,h,Color.black,new Color(0,0,0,0),'e'));
+					}else if (focus_button.idx==2){
+						int arci = rand.nextInt(180);
+						int a = rand.nextInt(360);
+						while (a<=180){
+							a = rand.nextInt(360);
+						}
+						int arcf = a;
+						figs.add(new Arc(x,y,w,h,arci,arcf,new Color(0,0,0,0),Color.black,'a'));
+					}else if (focus_button.idx==3){
+						int size = 20;
+						String stg = "hello";
+						figs.add(new Text(stg,x,y,w,h,"Arial",size,new Color(0,0,0,0),Color.black,'t'));
 					}
 				}
                 for (Figure fig: figs) {

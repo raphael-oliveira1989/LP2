@@ -5,7 +5,7 @@ import figures.Figure;
 
 public class Button implements IVisible{
 	public int idx, x,y,w,h;
-	public Color bg = Color.lightGray;;
+	private Color bg = Color.lightGray;;
 	private Figure fig;
 	private int aux;
 	
@@ -22,9 +22,6 @@ public class Button implements IVisible{
         return (this.x<=x && x<=this.x+this.w && this.aux<=y && y<=this.aux+this.h);
 	}
 	
-	public int get(){
-		return idx;
-	}
 	public void set(Color bg){
 		this.bg = bg;
 	}
