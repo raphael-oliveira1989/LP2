@@ -262,20 +262,9 @@ class IfaceFrame extends JFrame {
 				focus = aux;
                 int x = evt.getX();
                 int y = evt.getY();
-				int w = 50;
-				int h = 50;
-				Button aux_button = new Button(-1,new Ellipse(0,0,0,0,Color.black,Color.black,'e'));
-				focus_button = aux_button;
-				for (Button but: buts){
-					if (but.clicked(x,y)){
-						focus_button = but;
-						but.set(Color.gray);
-						//System.out.format("Clicou no botao\n");
-					}else{
-						but.set(Color.lightGray);
-					}
-				}
 				if (focus_button.idx != -1){
+					int w = 50;
+					int h = 50;
 					if (focus_button.idx==0){
 						figs.add(new Rect(x,y, w,h,Color.black,new Color(0,0,0,0),'r'));
 					}else if (focus_button.idx==1){
@@ -310,6 +299,23 @@ class IfaceFrame extends JFrame {
 				figs.add(focus);
 				repaint();
             }
+			
+			public void mouseClicked(MouseEvent evt){
+				int x = evt.getX();
+                int y = evt.getY();
+				Button aux_button = new Button(-1,new Ellipse(0,0,0,0,Color.black,Color.black,'e'));
+				focus_button = aux_button;
+				for (Button but: buts){
+					if (but.clicked(x,y)){
+						focus_button = but;
+						but.set(Color.gray);
+						//System.out.format("Clicou no botao\n");
+					}else{
+						but.set(Color.lightGray);
+					}
+				}
+				repaint();
+			}
         });
 		
 		this.addMouseMotionListener(new MouseMotionAdapter(){
