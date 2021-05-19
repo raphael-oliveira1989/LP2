@@ -7,14 +7,12 @@ import java.awt.geom.Arc2D.Float;
 
 
 public class Arc extends Figure{
-	public int arci, arcf;
-	public int choice;
+	private int arci, arcf;
 
-    public Arc (int x, int y, int w, int h, int arci, int arcf, Color bd, Color bg, int choice,char c) {
+    public Arc (int x, int y, int w, int h, int arci, int arcf, Color bd, Color bg,char c) {
         super(x,y,w,h,bd,bg,c);
 		this.arci = arci;
 		this.arcf = arcf;
-		this.choice = choice;
     }
 	
 	public void set(int x, int y, int w, int h){
@@ -32,12 +30,6 @@ public class Arc extends Figure{
     public void paint(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		g.setColor(bg);
-		if(this.choice==1){
-			g2d.draw(new Arc2D.Double(x, y, w,h, arci, arcf, Arc2D.OPEN));
-		}else if(this.choice==2){
-			g2d.fill(new Arc2D.Double(x, y, w,h, arci, arcf, Arc2D.PIE));
-		}else if(this.choice==3){
-			g2d.fill(new Arc2D.Double(x, y, w,h, arci, arcf, Arc2D.CHORD));
-		}
+		g2d.draw(new Arc2D.Double(x, y, w,h, arci, arcf, Arc2D.OPEN));
     }
 }

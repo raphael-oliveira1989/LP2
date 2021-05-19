@@ -5,7 +5,7 @@ import ivisible.IVisible;
 
 public abstract class Figure implements IVisible{
 	public int x, y,w,h;
-    public Color bg,bd;
+    protected Color bg,bd;
 	public char c;
 	
     public Figure (int x, int y, int w, int h, Color bd, Color bg,char c) {

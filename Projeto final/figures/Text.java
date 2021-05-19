@@ -3,8 +3,8 @@ package figures;
 import java.awt.*;
 
 public class Text extends Figure{
-    public String stg,font;
-	public int size;
+    private String stg,font;
+	private int size;
 	
     public Text (String stg, int x, int y, int w, int h, String font, int size, Color bd, Color bg,char c) {
 		super(x,y,w,h,bd,bg,c);
