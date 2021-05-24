@@ -1,11 +1,14 @@
 package figures;
 
 import java.awt.*;
+import java.io.Serializable;
+
 import ivisible.IVisible;
 
-public abstract class Figure implements IVisible{
-	public int x, y,w,h;
-    protected Color bg,bd;
+
+public abstract class Figure implements IVisible, Serializable{
+	public int x, y, w, h;
+	Color bg,bd;
 	public char c;
 	
     public Figure (int x, int y, int w, int h, Color bd, Color bg,char c) {
