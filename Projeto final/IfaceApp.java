@@ -3,6 +3,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Random;
+import java.io.*;
 
 import figures.*;
 
@@ -20,8 +21,17 @@ class IfaceFrame extends JFrame {
 	Rect r = new Rect(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0),'r');
 	Figure focus = new Ellipse(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0),'e');
 	Button focus_button = new Button(-1,new Ellipse(0,0,0,0,Color.black,Color.black,'e'));
-
+			
     IfaceFrame () {
+		try{
+			FileInputStream f = new FileInputStream("proj.bin");
+			ObjectInputStream o = new ObjectInputStream(f);
+			this.figs = (ArrayList<Figure>) o.readObject();
+			o.close();
+		}catch(Exception x){
+			System.out.println("ERRO!\n");
+		}
+		
 		buts.add(new Button(0,new Rect(0,0,0,0,Color.black,Color.black,'r')));
 		buts.add(new Button(1,new Ellipse(0,0,0,0,Color.black,Color.black,'e')));
 		buts.add(new Button(2,new Arc(0,0,0,0,30,190,new Color(0,0,0,0),Color.black,'a')));
@@ -30,6 +40,15 @@ class IfaceFrame extends JFrame {
 		//janela
         this.addWindowListener (new WindowAdapter() {
             public void windowClosing (WindowEvent e) {
+				try{
+					FileOutputStream f = new FileOutputStream("proj.bin");
+					ObjectOutputStream o = new ObjectOutputStream(f);
+					o.writeObject(figs);
+					o.flush();
+					o.close();
+				}catch(Exception x){
+					System.out.println("ERRO!\n");
+				}
                  System.exit(0);
             }
         });
@@ -343,7 +362,7 @@ class IfaceFrame extends JFrame {
 		//this.setSize(350, 350);
 		this.setUndecorated(false);
 		this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public void paint (Graphics g) {
