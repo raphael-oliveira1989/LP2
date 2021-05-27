@@ -367,11 +367,11 @@ class IfaceFrame extends JFrame {
 
     public void paint (Graphics g) {
         super.paint(g);
-		for (Button but: this.buts) {
-            but.paint(g);
-        }
         for (Figure fig: this.figs) {
             fig.paint(g);
+        }
+		for (Button but: this.buts) {
+            but.paint(g);
         }
 		this.r.paint(g);
     }
