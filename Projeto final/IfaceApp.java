@@ -277,11 +277,12 @@ class IfaceFrame extends JFrame {
         this.addMouseListener (new MouseAdapter() {
             public void mousePressed (MouseEvent evt) {
 				Figure aux = new Ellipse(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0),'e');
+				//Button aux_button = new Button(-1,new Ellipse(0,0,0,0,Color.black,Color.black,'e'));
 				r.corbd(new Color(0,0,0,0));
 				focus = aux;
                 int x = evt.getX();
                 int y = evt.getY();
-				if (focus_button.idx != -1){
+				if (x>61){
 					int w = 50;
 					int h = 50;
 					if (focus_button.idx==0){
@@ -331,6 +332,7 @@ class IfaceFrame extends JFrame {
 						//System.out.format("Clicou no botao\n");
 					}else{
 						but.set(Color.lightGray);
+						//System.out.format("Clicou fora do botao\n");
 					}
 				}
 				repaint();
