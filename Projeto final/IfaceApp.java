@@ -282,7 +282,7 @@ class IfaceFrame extends JFrame {
 				focus = aux;
                 int x = evt.getX();
                 int y = evt.getY();
-				if (x>61){
+				if (x>61||y>165){
 					int w = 50;
 					int h = 50;
 					if (focus_button.idx==0){
